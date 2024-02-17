@@ -51,9 +51,10 @@ async function generateText(req, res) {
 
 
 async function TranslateText(req, res) {
-    const { userdatatxt, outputlanguage } = req.body;
+    const { generatetxt,usertxt } = req.body;
 
-    const translationPrompt = `Translate the following text: "${userdatatxt}" into ${outputlanguage} language.`;
+
+    const grammarPrompt = `List all the grammartical errors in "${usertxt}" if "${usertxt}" and "${generatetxt}" have similar meaning otherwise say what the differences are `;
 
 
 
@@ -66,7 +67,8 @@ async function TranslateText(req, res) {
             {
                 role: "user",
                 content: [
-                    { type: "text", text: translationPrompt },
+
+                    { type: "text", text: grammarPrompt },
                 ],
             },
         ],
@@ -121,37 +123,7 @@ function extractIncorrectWords(response, userInput) {
 
 
 
-async function correctness(req, res) {
-    const { userinput } = req.body;
 
-    const comparePrompt = `Compare the meaning of the following texts: "${translatedtxt}" and "${userinput}". Provide details on any differences, and list the incorrect words in the "${userinput}" sentence.`;
-
-    try {
-        const response = await openai.chat.completions.create({
-            model: "gpt-4-vision-preview",
-            max_tokens: 150, // Adjust the max_tokens as needed
-
-            messages: [
-                {
-                    role: "user",
-                    content: [
-                        { type: "text", text: comparePrompt },
-                    ],
-                },
-            ],
-        });
-
-        const answer = response.choices[0].message.content;
-
-        // Extract incorrect words from the response
-        const incorrectWords = extractIncorrectWords(answer, userinput);
-
-        res.json({ answer });
-    } catch (error) {
-        console.error('Error processing correctness:', error);
-        res.status(500).json({ message: "Error processing correctness" });
-    }
-}
 
 
 
@@ -165,6 +137,6 @@ async function correctness(req, res) {
 module.exports = {
     generateText,
     TranslateText,
-    correctness,
+    
 }
 

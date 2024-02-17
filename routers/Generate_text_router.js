@@ -8,7 +8,7 @@ const{generateText,TranslateText,correctness} = require('../controllers/Generate
 
 router.post('/generate',generateText);
 router.post('/translate',TranslateText);
-router.post('/compare',correctness);
+
 
 
 module.exports = router;
