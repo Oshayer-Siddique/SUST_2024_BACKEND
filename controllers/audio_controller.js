@@ -31,9 +31,8 @@ async function text_audio(req, res) {
 
         const buffer = Buffer.from(await mp3.arrayBuffer());
 
-        // Set the response headers to indicate the content type and attachment
+        // Set the response header to indicate the content type
         res.setHeader('Content-Type', 'audio/mpeg');
-        res.setHeader('Content-Disposition', 'attachment; filename=speech.mp3');
 
         // Send the buffer as the response
         res.end(buffer);
