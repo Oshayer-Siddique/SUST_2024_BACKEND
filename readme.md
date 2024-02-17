@@ -1,4 +1,27 @@
-API Documentation
+#IUT VANGUARD
+
+##start server:
+set up the backend:
+
+```
+    git clone https://github.com/Oshayer-Siddique/SUST_2024_BACKEND.git
+    npm i
+    npm run dev
+```
+
+setup the backend using docker:
+
+```
+    docker-compose up -d --build
+```
+
+delete docker container:
+
+```
+    docker-compose down -v
+```
+
+###API Documentation
 Welcome to the API documentation for the service hosted at http://localhost:5000/. This API provides several endpoints for various functionalities. Below you will find details on how to use each endpoint along with examples of input and output.
 
 1. Generate Text
