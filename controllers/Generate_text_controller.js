@@ -25,12 +25,13 @@ let translatedtxt;
 async function generateText(req, res) {
     const { inputlanguage, mood } = req.body;
 
-    const prompt = `Generate a complete sentence ${inputlanguage} text about random topic with a ${mood} mood in 50 letters.`;
+    const prompt = `Generate a complete sentence ${inputlanguage} text about random topic with a ${mood} mood in 15 words.`;
 
 
 
     const response = await openai.chat.completions.create({
         model: "gpt-4-vision-preview",
+        max_tokens : 100,
 
 
         messages: [
@@ -43,16 +44,16 @@ async function generateText(req, res) {
         ],
     });
     //console.log(response.choices[0]);
-    generatedtxt = response.choices[0].message.content;
+    generatedtxt = response.choices[0].message;
     res.send(generatedtxt);
 
 }
 
 
 async function TranslateText(req, res) {
-    const { outputlanguage } = req.body;
+    const { userdatatxt, outputlanguage } = req.body;
 
-    const translationPrompt = `Translate the following text: "${generatedtxt}" into ${outputlanguage} language.`;
+    const translationPrompt = `Translate the following text: "${userdatatxt}" into ${outputlanguage} language.`;
 
 
 
@@ -71,7 +72,7 @@ async function TranslateText(req, res) {
         ],
     });
     //console.log(response.choices[0]);
-    translatedtxt = response.choices[0].message.content;
+    translatedtxt = response.choices[0].message;
     res.send(translatedtxt);
     //res.send(generatedtxt)
 }
@@ -145,7 +146,7 @@ async function correctness(req, res) {
         // Extract incorrect words from the response
         const incorrectWords = extractIncorrectWords(answer, userinput);
 
-        res.json({ answer, incorrectWords });
+        res.json({ answer });
     } catch (error) {
         console.error('Error processing correctness:', error);
         res.status(500).json({ message: "Error processing correctness" });
