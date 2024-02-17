@@ -3,3 +3,14 @@
 3 = docker-compose up -d --build
 4 = docker-compose down -v
 5 = mongosh --port 2717
+
+6. set up the backend:
+    1. git clone https://github.com/Oshayer-Siddique/SUST_2024_BACKEND.git
+    2. npm i
+    3. npm run dev
+
+setup the backend using docker:
+    1. docker-compose up -d --build
+
+delete docker container:
+    1. docker-compose down -v

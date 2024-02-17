@@ -50,7 +50,7 @@ async function quiztest(req, res) {
             model: "dall-e-2",
             prompt: "a " + quiz.answer + ". Make it cartoonish.",
             n: 1,
-            size: "512x512",
+            size: "256x256",
         });
         quiz.ansURL = response.data[0].url;
         //console.log(image_url)
