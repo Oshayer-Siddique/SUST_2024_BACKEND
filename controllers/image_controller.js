@@ -49,6 +49,36 @@ async function analyzeimage(req,res){
 }
 
 
+async function handwritinganalyzer(req,res){
+  const { imageurl } = req.body;
+
+  const response = await openai.chat.completions.create({
+    model: "gpt-4-vision-preview",
+    max_tokens: 100,
+    messages: [
+      {
+        role: "user",
+        content: [
+          { type: "text", text: `Read the context in the image. Find the grammartical mistake in the handwritten text` },
+          {
+            type: "image_url",
+            image_url: {
+              "url": imageurl,
+            },
+          },
+        ],
+      },
+    ],
+  });
+  let reply = response.choices[0];
+
+  console.log(reply);
+  res.json({ message: "Image found successfully", description: reply.message.content });
+
+}
+
+
 module.exports = {
     analyzeimage,
+    handwritinganalyzer,
 }
