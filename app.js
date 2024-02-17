@@ -105,37 +105,40 @@
 //     console.log(`server listening on port ${process.env.port}`)
 // })
 
-// import OpenAI from "openai";
+import OpenAI from "openai";
+import dotenv from 'dotenv';
 
-// const openai = new OpenAI({
-//     apiKey : "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"
-// });
+dotenv.config();
 
-// const prmpt = "A robot contemplating life";
+const openai = new OpenAI({
+    apiKey : process.env.OPENAI_API_KEY
+});
 
-// async function main() {
-//   const image = await openai.images.generate({ prompt: prmpt });
+const prmpt = "A robot finding happiness in human";
 
-//   console.log(image.data);
-// }
-// main();
+async function main() {
+  const image = await openai.images.generate({ prompt: prmpt });
 
-
-const  GoogleGenerativeAI  = require("@google/generative-ai");
-
-// Access your API key as an environment variable (see "Set up your API key" above)
-const genAI = new GoogleGenerativeAI("AIzaSyAxaUZaOqxmckzdkZ4oGnJB8ADTClPs6BY");
-
-async function run() {
-  // For text-only input, use the gemini-pro model
-  const model = genAI.getGenerativeModel({ model: "gemini-pro"});
-
-  const prompt = "Write a story about a hero"
-
-  const result = await model.generateContent(prompt);
-  const response = await result.response;
-  const text = response.text();
-  console.log(text);
+  console.log(image.data);
 }
+main();
 
-run();
+
+// const  GoogleGenerativeAI  = require("@google/generative-ai");
+
+// // Access your API key as an environment variable (see "Set up your API key" above)
+// const genAI = new GoogleGenerativeAI("AIzaSyAxaUZaOqxmckzdkZ4oGnJB8ADTClPs6BY");
+
+// async function run() {
+//   // For text-only input, use the gemini-pro model
+//   const model = genAI.getGenerativeModel({ model: "gemini-pro"});
+
+//   const prompt = "Write a story about a hero"
+
+//   const result = await model.generateContent(prompt);
+//   const response = await result.response;
+//   const text = response.text();
+//   console.log(text);
+// }
+
+// run();

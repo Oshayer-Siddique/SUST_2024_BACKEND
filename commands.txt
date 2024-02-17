@@ -3,5 +3,3 @@
 3 = docker-compose up -d --build
 4 = docker-compose down -v
 5 = mongosh --port 2717
-OPENAI_API_KEY = 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
-geminiai_api_key = AIzaSyAxaUZaOqxmckzdkZ4oGnJB8ADTClPs6BY
