@@ -1,6 +1,6 @@
-#IUT VANGUARD
+# IUT VANGUARD
 
-##start server:
+## start server:
 set up the backend:
 
 ```
@@ -21,7 +21,7 @@ delete docker container:
     docker-compose down -v
 ```
 
-###API Documentation
+### API Documentation
 Welcome to the API documentation for the service hosted at http://localhost:5000/. This API provides several endpoints for various functionalities. Below you will find details on how to use each endpoint along with examples of input and output.
 
 1. Generate Text
