@@ -37,30 +37,39 @@ Input:
 ```
 
 Output: A string in the specified language and mood.
-2. Translate Text
+2. Compares two strings of two different languages
 URL: /translate
 Method: POST
 Input:
 
 ```
 {
-    "outputlanguage": "French"
+    "generatetxt":"ami ekta chele",
+    "usertxt":"he is a boy"
+
 }
 ```
 
-Output: Translates the output of /generate into the given language.
-3. Compare Text
-URL: /compare
+Output: 
+
+```
+    "role": "assistant",
+    "content": "Compares the user input (usertxt) to the standard text (generatetxt) and points out any grammatical errors"
+
+```
+
+3. Voice Chat
+URL: /voicechat
 Method: POST
 Input:
 
 ```
 {
-    "userinput": "A sentence in any language"
+    "files" : "An audio file (.mp3, .m4a etc.),
 }
 ```
 
-Output: Compares the input string to the output of /translate.
+Output: Returns a downloadable mp3 file.
 4. Analyze Image
 URL: /analyze
 Method: POST
