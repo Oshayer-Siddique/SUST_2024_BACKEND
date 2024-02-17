@@ -105,24 +105,39 @@
 //     console.log(`server listening on port ${process.env.port}`)
 // })
 
-import OpenAI from "openai";
+
 import dotenv from 'dotenv';
 
 dotenv.config();
 
+import OpenAI from "openai";
+import fs from 'fs'
+
 const openai = new OpenAI({
-    apiKey : process.env.OPENAI_API_KEY
+    apiKey : process.env.OPENAI_API_KEY_GPT4
 });
 
-const prmpt = "A robot finding happiness in human";
-
 async function main() {
-  const image = await openai.images.generate({ prompt: prmpt });
-
-  console.log(image.data);
+  const response = await openai.chat.completions.create({
+    model: "gpt-4-vision-preview",
+    messages: [
+      {
+        role: "user",
+        content: [
+          { type: "text", text: "What’s in this image? give me in one word" },
+          {
+            type: "image_url",
+            image_url: {
+              "url": "https://www.dropbox.com/s/zmeetcz4w902xn0/Maze.png?raw=1",
+            },
+          },
+        ],
+      },
+    ],
+  });
+  console.log(response.choices[0]);
 }
 main();
-
 
 // const  GoogleGenerativeAI  = require("@google/generative-ai");
 
