@@ -113,12 +113,16 @@ const generateTextRouter = require('./routers/Generate_text_router');
 const imageRouter = require('./routers/imagerouter');
 const audioRouter = require('./routers/audio_router');
 const quizRouter = require('./routers/quiz_router');
+const registerRouter = require('./routers/register_router');
+const loginRouter = require('./routers/login_router');
 
 
 app.use('/', generateTextRouter);
 app.use('/', imageRouter);
 app.use('/',audioRouter);
 app.use('/',quizRouter);
+app.use('/',registerRouter);
+app.use('/',loginRouter);
 
 
 
