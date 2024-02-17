@@ -58,6 +58,7 @@ async function TranslateText(req, res) {
 
     const response = await openai.chat.completions.create({
         model: "gpt-4-vision-preview",
+        max_tokens: 100,
 
 
         messages: [
