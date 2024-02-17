@@ -54,8 +54,7 @@ async function TranslateText(req, res) {
     const { generatetxt,usertxt } = req.body;
 
 
-    const grammarPrompt = `List all the grammartical errors in "${usertxt}" if "${usertxt}" and "${generatetxt}" have similar meaning otherwise say what the differences are `;
-
+    const grammarPrompt = `point all the grammartical errors in "${usertxt}" if "${usertxt}" and "${generatetxt}" have similar meaning otherwise say what the differences are . `
 
 
     const response = await openai.chat.completions.create({
@@ -68,7 +67,11 @@ async function TranslateText(req, res) {
                 role: "user",
                 content: [
 
-                    { type: "text", text: grammarPrompt },
+                    //{ type: "text", text: grammarPrompt },
+                    {
+                        type:"text",text:grammarPrompt
+                    }
+                    
                 ],
             },
         ],
