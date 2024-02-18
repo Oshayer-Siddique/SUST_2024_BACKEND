@@ -37,6 +37,7 @@ Input:
 ```
 
 Output: A string in the specified language and mood.
+
 2. Compares two strings of two different languages
 URL: /translate
 Method: POST
@@ -70,6 +71,7 @@ Input:
 ```
 
 Output: Returns a downloadable mp3 file.
+
 4. Analyze Image
 URL: /analyze
 Method: POST
@@ -96,6 +98,7 @@ URL: /analyzeAudio
 Method: POST
 Input: Accepts an audio file (.mp3, .m4a, etc.)
 Output: A text transcript of the given audio file.
+
 6. Text to Audio
 URL: /txtaudio
 Method: POST
@@ -108,6 +111,7 @@ Input:
 ```
 
 Output: An mp3 file containing the audio of the input text.
+
 7. Quiz
 URL: /quiz
 Method: GET
@@ -135,6 +139,7 @@ Input:
 ```
 
 Output: Success/Error message.
+
 9. User Login
 URL: /login
 Method: POST
@@ -155,7 +160,7 @@ Output:
 }
 ```
 
-Example Usage
+###Example Usage
 To generate text in English with a casual mood:
 
 ```
