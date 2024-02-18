@@ -179,11 +179,13 @@ app.post("/voicechat", upload.array("files"), async (req, res) => {
     })
     console.log(reply);
     let gptreply = await voicechattxt(reply);
-    let gptvoice = await chattospeech(gptreply.message.content);
-    res.setHeader('Content-Type', 'audio/mpeg');
 
-    // Send the buffer as the response
-    res.end(gptvoice);
+    res.json(gptreply.message);
+    // let gptvoice = await chattospeech(gptreply.message.content);
+    // res.setHeader('Content-Type', 'audio/mpeg');
+
+    // // Send the buffer as the response
+    // res.end(gptvoice);
     
   }
 
