@@ -56,12 +56,12 @@ async function TranslateText(req, res) {
 
     const grammarPrompt = `
     suppose you are a grammar specialist. now i will give you a text i have written this one : "${usertxt}" 
-    and this one which is  an accurate one :"${generateText}"  i want you to figure out all the grammatical mistakes in the first one and give me the correct one in a json format like wrong word : correct word.`
+    and this one which is  an accurate one :"${generateText}"  i want you to figure out all the grammatical mistakes in the first one`;
 
 
     const response = await openai.chat.completions.create({
         model: "gpt-4-vision-preview",
-        max_tokens: 100,
+        max_tokens: 50,
 
 
         messages: [

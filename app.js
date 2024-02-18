@@ -108,7 +108,7 @@ app.post("/analyzeAudio", upload.array("files"), async (req, res) => {
 
 
 async function voicechattxt(reply) {
-  const prompt = reply;
+  const prompt = reply ;
 
   try {
       const response = await openai.chat.completions.create({
@@ -151,7 +151,7 @@ async function chattospeech(userinput) {
 
 
 app.post("/voicechat",  async (req, res) => {
-  const {userchat} = req.body;
+  const {userchat,mood} = req.body;
   // Sets multer to intercept files named "files" on uploaded form data
 
     let gptreply = await voicechattxt(userchat);
