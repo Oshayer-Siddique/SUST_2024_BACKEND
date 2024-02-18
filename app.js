@@ -150,35 +150,11 @@ async function chattospeech(userinput) {
 
 
 
-app.post("/voicechat", upload.array("files"), async (req, res) => {
+app.post("/voicechat",  async (req, res) => {
+  const {userchat} = req.body;
   // Sets multer to intercept files named "files" on uploaded form data
 
-  let audio = req.files[0];
-  if (!(audio.mimetype.includes('audio'))) {
-    fs.unlink(audio.path, (err) => {
-      if (err) {
-        console.error(err)
-      }
-    })
-    res.json({ message: "File(s) must be an audio" });
-  }
-  else {
-    const transcription = await openai.audio.transcriptions.create({
-      file: fs.createReadStream(audio.path),
-      model: "whisper-1",
-      response_format: "verbose_json",
-    });
-
-    let reply = transcription.text;
-
-
-    fs.unlink(audio.path, (err) => {
-      if (err) {
-        console.error(err)
-      }
-    })
-    console.log(reply);
-    let gptreply = await voicechattxt(reply);
+    let gptreply = await voicechattxt(userchat);
 
     res.json(gptreply.message);
     // let gptvoice = await chattospeech(gptreply.message.content);
@@ -189,7 +165,7 @@ app.post("/voicechat", upload.array("files"), async (req, res) => {
     
   }
 
-});
+);
 
 
 
